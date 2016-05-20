@@ -179,7 +179,7 @@ if startdate is None:
     startdate = (now.year, now.month, now.day)
 
 # First create a schedule object
-mysched = MLBSchedule(ymd_tuple=startdate,time_shift=mycfg.get('time_offset'))
+mysched = MLBSchedule(ymd_tuple=startdate,time_shift=mycfg.get('time_offset'),international=mycfg.get('international'))
 
 # Now retrieve the listings for that day
 try:
