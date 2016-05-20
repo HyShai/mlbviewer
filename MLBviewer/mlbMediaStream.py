@@ -288,10 +288,8 @@ class MediaStream:
                 success_status = blackout_status.getElementsByTagName('successStatus')
                 blackout_status = None
             except:
-                try:
-                    location_status = blackout_status.getElementsByTagName('locationCannotBeDeterminedStatus')
-                except:
-                    blackout_status = 'LOCATION CANNOT BE DETERMINED.'
+            	if blackout_status.getElementsByTagName('locationCannotBeDeterminedStatus'):
+            		blackout_status = 'LOCATION CANNOT BE DETERMINED.'
 
         media_type = reply.getElementsByTagName('type')[0].childNodes[0].data
         media_state = reply.getElementsByTagName('state')[0].childNodes[0].data
