@@ -222,12 +222,12 @@ class MLBSchedule:
            for attr in media.attributes.keys():
                tmp[attr] = str(media.getAttribute(attr))
            out = []
-           # skip TBS-NAT for international postseason
+           # skip any national broadcasts for international postseason
            if self.international:
-               if tmp.get('tbs_auth_required') == "Y":
-                   continue
-               if tmp.get('mlbn_auth_required') == "Y":
-                   continue
+               r = re.compile(r"\w+_auth_required")
+               f = filter(r.match, tmp.keys())
+               if f and tmp[f[0]] == 'Y':
+                continue
            try:
                tmp['playback_scenario'] = tmp['playback_scenario'].strip()
            except:
